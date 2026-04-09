@@ -1,0 +1,413 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Heart Disease Prediction</title>
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    body {
+      background: linear-gradient(135deg, #fdf2f2, #ffe6e6, #fff);
+      color: #333;
+      overflow-x: hidden;
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 8%;
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: blur(12px);
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.05);
+    }
+
+    .about,
+  .contact {
+    padding: 80px 8%;
+    background: #fff;
+  }
+
+  .contact {
+    background: #fafafa;
+  }
+
+  .section-container {
+    max-width: 800px;
+    margin: auto;
+    text-align: center;
+  }
+
+  .section-container h2 {
+    font-size: 2rem;
+    color: #d62828;
+    margin-bottom: 20px;
+  }
+
+  .section-container p {
+    color: #666;
+    line-height: 1.8;
+    font-size: 1rem;
+    margin-bottom: 25px;
+  }
+
+  .contact-links {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    flex-wrap: wrap;
+  }
+
+  .contact-links a {
+    text-decoration: none;
+    color: #d62828;
+    font-weight: 500;
+    transition: 0.3s;
+  }
+
+  .contact-links a:hover {
+    color: #b71c1c;
+  }
+
+    .logo {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #d62828;
+    }
+
+    nav a {
+      text-decoration: none;
+      margin-left: 30px;
+      color: #444;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+
+    nav a:hover {
+      color: #d62828;
+    }
+
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 8%;
+      gap: 50px;
+    }
+
+    .hero-text {
+      flex: 1;
+    }
+
+    .hero-text h1 {
+      font-size: 3.5rem;
+      line-height: 1.2;
+      color: #222;
+      margin-bottom: 20px;
+    }
+
+    .hero-text h1 span {
+      color: #d62828;
+    }
+
+    .hero-text p {
+      font-size: 1.1rem;
+      color: #666;
+      line-height: 1.8;
+      margin-bottom: 30px;
+      max-width: 600px;
+    }
+
+    .btn-group {
+      display: flex;
+      gap: 20px;
+    }
+
+    .btn {
+      padding: 14px 28px;
+      border-radius: 12px;
+      border: none;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      transition: 0.3s ease;
+      text-decoration: none;
+      display: inline-block;
+    }
+
+    .btn-primary {
+      background: #d62828;
+      color: white;
+      box-shadow: 0 10px 25px rgba(214, 40, 40, 0.3);
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      background: #b71c1c;
+    }
+
+    .btn-secondary {
+      background: white;
+      color: #d62828;
+      border: 2px solid #d62828;
+    }
+
+    .btn-secondary:hover {
+      background: #d62828;
+      color: white;
+    }
+
+    .hero-image {
+      flex: 1;
+      display: flex;
+      justify-content: center;
+      position: relative;
+    }
+
+    .hero-image img {
+      width: 100%;
+      max-width: 500px;
+      animation: float 4s ease-in-out infinite;
+    }
+
+    @keyframes float {
+      0%, 100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-15px);
+      }
+    }
+
+    .features {
+      padding: 80px 8%;
+      text-align: center;
+    }
+
+    .section-title {
+      font-size: 2.5rem;
+      margin-bottom: 15px;
+      color: #222;
+    }
+
+    .section-subtitle {
+      color: #666;
+      margin-bottom: 50px;
+      font-size: 1rem;
+    }
+
+    .feature-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 30px;
+    }
+
+    .feature-card {
+      background: white;
+      padding: 35px 25px;
+      border-radius: 20px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+      transition: 0.3s ease;
+    }
+
+    .feature-card:hover {
+      transform: translateY(-10px);
+    }
+
+    .feature-icon {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .feature-card h3 {
+      margin-bottom: 15px;
+      color: #d62828;
+    }
+
+    .feature-card p {
+      color: #666;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    .stats {
+      background: linear-gradient(135deg, #d62828, #ef476f);
+      color: white;
+      padding: 70px 8%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 30px;
+      text-align: center;
+    }
+
+    .stat-box h2 {
+      font-size: 2.5rem;
+      margin-bottom: 10px;
+    }
+
+    .stat-box p {
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+
+    footer {
+      background: #111;
+      color: #bbb;
+      text-align: center;
+      padding: 25px;
+      font-size: 0.95rem;
+    }
+
+    
+
+    @media (max-width: 900px) {
+      .hero {
+        flex-direction: column-reverse;
+        text-align: center;
+        padding-top: 50px;
+      }
+
+      .hero-text h1 {
+        font-size: 2.5rem;
+      }
+
+      .btn-group {
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      nav {
+        display: none;
+      }
+    }
+  </style>
+  
+</head>
+<body>
+
+  <header>
+    <div class="logo">HeartCare AI</div>
+    <nav>
+      <a href="#">Home</a>
+      <a href="#features">Features</a>
+      <a href="#about">About</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </header>
+
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Predict <span>Heart Disease</span> Early with AI</h1>
+      <p>
+        Our intelligent heart disease prediction system uses Logistic Regression and medical data analysis to help identify potential risks early. Fast, accurate, and easy to use.
+      </p>
+      <div class="btn-group">
+        <a href="/predict" class="btn btn-primary">Get Prediction</a>
+        <a href="#features" class="btn btn-secondary">Learn More</a>
+      </div>
+    </div>
+
+    <div class="hero-image">
+      <img src="https://cdn-icons-png.flaticon.com/512/3774/3774299.png" alt="Heart Illustration">
+    </div>
+  </section>
+
+  <section class="features" id="features">
+    <h2 class="section-title">Why Choose Our System?</h2>
+    <p class="section-subtitle">Designed to provide quick, reliable, and data-driven predictions.</p>
+
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="feature-icon">❤️</div>
+        <h3>Accurate Prediction</h3>
+        <p>Uses Logistic Regression trained on medical datasets to provide reliable heart disease risk prediction.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">⚡</div>
+        <h3>Instant Results</h3>
+        <p>Get your prediction within seconds after entering your health details.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">📊</div>
+        <h3>Health Analytics</h3>
+        <p>Understand key health factors like cholesterol, blood pressure, and heart rate.</p>
+      </div>
+
+      <div class="feature-card">
+        <div class="feature-icon">🔒</div>
+        <h3>Secure Data</h3>
+        <p>Your health data remains private, secure, and protected with modern standards.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+<section class="about" id="about">
+  <div class="section-container">
+    <h2>About</h2>
+    <p>
+      HeartCare AI is a heart disease prediction system that uses Logistic Regression
+      to analyze medical data and estimate the risk of heart disease quickly and accurately.
+    </p>
+  </div>
+</section>
+
+<!-- Contact Section -->
+<section class="contact" id="contact">
+  <div class="section-container">
+    <h2>Contact</h2>
+    <p>Have questions or feedback? Feel free to reach out.</p>
+
+    <div class="contact-links">
+      <a href="mailto:yourmail@example.com">heartmail@example.com</a>
+      <a href="https://github.com/kkb1110/logistic-regression-project">GitHub</a>
+    </div>
+  </div>
+</section>
+
+  <section class="stats">
+    <div class="stat-box">
+      <h2>82%</h2>
+      <p>Prediction Accuracy</p>
+    </div>
+
+    <div class="stat-box">
+      <h2>10K+</h2>
+      <p>Predictions Generated</p>
+    </div>
+
+    <div class="stat-box">
+      <h2>24/7</h2>
+      <p>Available Anytime</p>
+    </div>
+
+    <div class="stat-box">
+      <h2>100%</h2>
+      <p>Secure & Confidential</p>
+    </div>
+  </section>
+
+  <footer>
+    © 2026 HeartCare AI | Heart Disease Prediction System
+  </footer>
+
+</body>
+</html>
+
+
+
+
+  
